@@ -1,26 +1,321 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ========== 夜色基底（首页/入口/问题页） ========== */
+  --bg-primary: #0F1220;
+  --bg-secondary: #131827;
+  --bg-tertiary: #0A0D17;
+
+  /* 文字颜色 - 明度分工 */
+  --text-primary: #E6E8F0;    /* 主文本 */
+  --text-secondary: #9AA0B6;  /* 次级说明 */
+  --text-muted: #6B7085;      /* 极弱辅助 */
+
+  /* 紫色 - 仅强调色 */
+  --purple-primary: #6E63FF;
+  --purple-hover: #7A6CFF;
+  --purple-glow: rgba(110, 99, 255, 0.2);
+  --purple-border: rgba(110, 99, 255, 0.5);
+
+  /* 入口卡片 - 半透明浅卡（能呼吸） */
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-hover: rgba(255, 255, 255, 0.09);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+
+  /* ========== 结果页专用（清晨/被接住） ========== */
+  --result-bg: #1A1F2E;           /* 比夜色亮 25% */
+  --result-text: #F5F6FA;         /* 更亮的文字 */
+  --result-glow-color: rgba(110, 99, 255, 0.25);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 首页/入口背景 - 深色但有呼吸感 */
+.bg-cyber {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(30, 35, 50, 0.5) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-primary) 50%, var(--bg-secondary) 100%);
+}
+
+/* 卡片样式 - 纯明度差 */
+.card-cyber {
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.card-cyber:hover {
+  background: var(--card-hover);
+  border-color: var(--border-hover);
+}
+
+/* 主CTA按钮 - 紫色（系统启动） */
+.btn-cyber {
+  background: var(--purple-primary);
+  border: none;
+  color: white;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cyber:hover {
+  background: var(--purple-hover);
+  box-shadow: 0 0 24px var(--purple-glow);
+  transform: translateY(-2px);
+}
+
+/* 选项按钮 - 默认灰，选中紫 */
+.option-cyber {
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 18px 24px;
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+}
+
+.option-cyber:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+/* 选中态 - 确定性反馈（不再若有若无） */
+.option-cyber.selected {
+  background: rgba(110, 99, 255, 0.15);
+  border-color: var(--purple-primary);
+  border-width: 2px;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(110, 99, 255, 0.2);
+  transform: translateX(4px);
+}
+
+/* 第2题选中态 - 更亮（走到更核心的位置） */
+.option-cyber.deeper.selected {
+  background: rgba(110, 99, 255, 0.22);
+  box-shadow: 0 0 28px rgba(110, 99, 255, 0.35);
+  border-color: #8078FF;
+}
+
+/* 入口卡片 - 半透明浅卡（夜色中的路） */
+.entry-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(8px);
+}
+
+/* hover - 浮起来，有光 */
+.entry-card:hover {
+  background: var(--card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* hover时文字也变亮 */
+.entry-card:hover h3 {
+  color: #fff;
+}
+
+.entry-card:hover p {
+  color: var(--text-secondary);
+}
+
+/* 入口卡片联动：hover时其他卡片变暗（帮用户"承认偏向"） */
+.entry-cards-container:has(.entry-card:hover) .entry-card:not(:hover) {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+/* 首页标题 - 纯白 */
+.text-gradient {
+  color: var(--text-primary);
+}
+
+/* 进度点 - 默认灰，当前紫 */
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+  background: var(--purple-primary);
+}
+
+/* ========== 结果页 - 清晨/被接住（最亮的页面） ========== */
+
+.result-page {
+  background: linear-gradient(180deg,
+    var(--result-bg) 0%,
+    #1E2436 50%,
+    var(--result-bg) 100%
+  );
+}
+
+/* 结果页中央柔光（像深夜有人把台灯调亮了一档） */
+.result-glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse 100% 80%,
+    rgba(180, 185, 210, 0.08) 0%,
+    rgba(140, 145, 180, 0.05) 25%,
+    rgba(110, 99, 255, 0.06) 50%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+
+/* 文字区域的浅亮承托 */
+.result-text-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(ellipse,
+    rgba(220, 225, 240, 0.04) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  filter: blur(30px);
+}
+
+/* 结果句 - 高对比度，被看见 */
+.result-statement {
+  font-size: 1.625rem;
+  line-height: 2;
+  color: var(--result-text);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* 结果页关键词 - 紫色强调 */
+.result-keyword {
+  color: var(--purple-primary);
+  font-weight: 500;
+}
+
+/* 标签 - 更明显的存在感 */
+.result-label {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 100px;
+  border: 1px solid var(--purple-border);
+  color: #fff;
+  font-size: 0.9rem;
+  background: rgba(110, 99, 255, 0.15);
+  font-weight: 500;
+}
+
+/* 收尾句 - 柔和但清晰 */
+.result-allow {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: #C8CCD8;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.result-back {
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.result-back:hover {
+  color: var(--purple-primary);
+}
+
+/* ========== 动画 ========== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.animate-fade-in-delay {
+  animation: fadeInUp 0.6s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-2 {
+  animation: fadeInUp 0.6s ease 0.4s forwards;
+  opacity: 0;
+}
+
+/* ========== 布局 ========== */
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.screen-half {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
 }
