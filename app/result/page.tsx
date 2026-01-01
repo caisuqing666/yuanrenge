@@ -7,7 +7,7 @@ import { archetypes } from '@/content/archetypes';
 
 function ResultContent() {
   const searchParams = useSearchParams();
-  const archetypeId = searchParams.get('archetype') || 'carrier';
+  const archetypeId = searchParams.get('archetype') || 'overload';
 
   const archetype = archetypes[archetypeId];
 
@@ -21,37 +21,35 @@ function ResultContent() {
 
   return (
     <main className="result-page min-h-screen relative overflow-hidden">
-      {/* 中央柔光 - 像深夜有人把台灯调亮了一档 */}
+      {/* 雾状光域 - 低亮度安全区 */}
       <div className="result-glow"></div>
       <div className="result-text-glow"></div>
 
       <div className="screen relative z-10">
         <div className="max-w-2xl mx-auto w-full px-4 text-center">
-          {/* 识别句 - 主文本（被看见） */}
-          <div className="animate-fade-in mb-16">
-            <p className="result-statement">
-              {archetype.identifyStatement}
+          {/* 元人格句 - 核心层（只出现一次，停住的那一刻） */}
+          <div className="animate-fade-in mb-20">
+            <p className="result-core">
+              {archetype.core.split('\n').map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i === 0 && <br />}
+                </span>
+              ))}
             </p>
           </div>
 
-          {/* 标签 - 紫色高潮 */}
-          <div className="animate-fade-in-delay mb-12">
-            <span className="result-label">
-              {archetype.label}
-            </span>
-          </div>
-
-          {/* 收尾句 - 小号，留白多 */}
-          <div className="animate-fade-in-delay-2 mb-20">
+          {/* 允许句 - 给身体发通行证 */}
+          <div className="animate-fade-in-delay mb-16">
             <p className="result-allow">
               {archetype.allowStatement}
             </p>
           </div>
 
-          {/* 返回首页 */}
-          <div className="animate-fade-in-delay-2 pt-8">
-            <Link href="/" className="result-back text-sm">
-              返回首页
+          {/* 按钮 - 沉下来 */}
+          <div className="animate-fade-in-delay-2">
+            <Link href="/" className="result-label">
+              {archetype.label}
             </Link>
           </div>
         </div>
@@ -65,7 +63,7 @@ export default function ResultPage() {
     <Suspense
       fallback={
         <div className="bg-cyber min-h-screen flex items-center justify-center">
-          <p className="text-[var(--text-muted)]">加载中...</p>
+          <p className="text-[var(--text-muted)]">...</p>
         </div>
       }
     >

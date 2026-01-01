@@ -194,34 +194,48 @@ body {
 /* 结果页中央柔光（像深夜有人把台灯调亮了一档） */
 .result-glow {
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  width: 800px;
-  height: 600px;
+  width: 900px;
+  height: 700px;
   background: radial-gradient(ellipse 100% 80%,
-    rgba(180, 185, 210, 0.08) 0%,
-    rgba(140, 145, 180, 0.05) 25%,
-    rgba(110, 99, 255, 0.06) 50%,
-    transparent 75%
+    rgba(120, 125, 160, 0.06) 0%,
+    rgba(100, 105, 140, 0.04) 30%,
+    transparent 70%
   );
   pointer-events: none;
+  filter: blur(60px);
 }
 
-/* 文字区域的浅亮承托 */
+/* 雾状光域 - 低亮度安全区（夜里有一块地方，灯被调亮了一点点） */
 .result-text-glow {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 300px;
-  background: radial-gradient(ellipse,
-    rgba(220, 225, 240, 0.04) 0%,
-    transparent 60%
+  width: 420px;
+  height: 280px;
+  background: radial-gradient(ellipse 100% 100%,
+    rgba(140, 145, 175, 0.14) 0%,
+    rgba(120, 125, 160, 0.10) 35%,
+    rgba(100, 105, 145, 0.05) 60%,
+    transparent 100%
   );
   pointer-events: none;
-  filter: blur(30px);
+  filter: blur(50px);
+}
+
+/* 元人格句 - 核心层（停住的那一刻） */
+.result-core {
+  font-size: 1.5rem;
+  line-height: 2.2;
+  color: var(--result-text);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 400;
+  letter-spacing: 0.03em;
 }
 
 /* 结果句 - 高对比度，被看见 */
@@ -242,16 +256,30 @@ body {
   font-weight: 500;
 }
 
-/* 标签 - 更明显的存在感 */
+/* 标签/按钮 - 沉稳、柔和、不跳 */
 .result-label {
   display: inline-block;
-  padding: 10px 24px;
+  padding: 12px 32px;
   border-radius: 100px;
-  border: 1px solid var(--purple-border);
-  color: #fff;
+  border: 1px solid rgba(140, 145, 175, 0.25);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
-  background: rgba(110, 99, 255, 0.15);
-  font-weight: 500;
+  background: rgba(100, 105, 140, 0.12);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.result-label:hover {
+  background: rgba(100, 105, 140, 0.18);
+  border-color: rgba(140, 145, 175, 0.35);
+  transform: translateY(1px);
+}
+
+.result-label:active {
+  background: rgba(90, 95, 130, 0.22);
+  transform: translateY(2px);
 }
 
 /* 收尾句 - 柔和但清晰 */
