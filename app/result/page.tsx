@@ -46,12 +46,19 @@ function ResultContent() {
             </p>
           </div>
 
-          {/* 按钮 - 沉下来 */}
-          <div className="animate-fade-in-delay-2">
-            <Link href="/" className="result-label">
-              {archetype.label}
+          {/* 返回首页 */}
+          <div className="animate-fade-in-delay-2 pt-8 mb-12">
+            <Link href="/" className="result-back text-sm">
+              返回首页
             </Link>
           </div>
+          
+          {/* 页脚：内核标识 */}
+          <footer className="pt-8 border-t border-[var(--border-subtle)] opacity-30">
+            <p className="text-xs text-[var(--text-muted)]">
+              元人格 · 反应模式
+            </p>
+          </footer>
         </div>
       </div>
     </main>

@@ -9,15 +9,13 @@ export default function Home() {
       <section className="screen">
         <div className="text-center max-w-2xl mx-auto animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-light mb-6 tracking-wide">
-            <span className="text-gradient">元人格</span>
+            <span className="text-gradient">临在之锚</span>
           </h1>
           <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-4 leading-relaxed">
-            你现在的状态，
-            <br />
-            不需要立刻想明白。
+            在此刻，站稳一下。
           </p>
           <p className="text-xs text-[var(--text-muted)] mb-12 opacity-70">
-            用赛博推演的方式，看见你当下的反应模式
+            看见你当下的反应模式
           </p>
           <Link href="#entry" className="btn-cyber inline-block relative z-10">
             看看我现在处在哪种状态
@@ -81,7 +79,7 @@ export default function Home() {
           <p className="text-center text-[var(--text-muted)] text-sm leading-relaxed">
             卡住，并不一定是能力问题，
             <br />
-            而是在不同状态下，系统会启动不同的反应模式。
+            而是在不同状态下，你会启动不同的反应模式。
           </p>
         </div>
       </section>
@@ -113,14 +111,21 @@ export default function Home() {
       {/* 第四屏：合规说明 */}
       <section className="py-20">
         <div className="max-w-xl mx-auto text-center px-4">
-          <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+          <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-12">
             这是一次短暂的状态推演，不是建议，也不是判断。
             <br />
             <br />
-            元人格用于自我探索与反思，
+            临在之锚用于自我探索与反思，
             <br />
             不构成心理、医疗或其他专业建议。
           </p>
+          
+          {/* 页脚：内核标识 */}
+          <footer className="pt-8 border-t border-[var(--border-subtle)]">
+            <p className="text-xs text-[var(--text-muted)] opacity-50">
+              元人格 · 反应模式
+            </p>
+          </footer>
         </div>
       </section>
     </main>
