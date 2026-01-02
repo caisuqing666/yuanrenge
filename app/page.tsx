@@ -22,6 +22,16 @@ export default function Home() {
           <Link href="#entry" className="btn-cyber inline-block relative z-10">
             看看我现在处在哪种状态
           </Link>
+
+          {/* 临在之锚入口 - 与元人格同级，视觉更克制 */}
+          <Link href="/anchor" className="anchor-entry">
+            <p className="anchor-entry-text">
+              如果你只是想先停一下
+            </p>
+            <span className="anchor-entry-btn">
+              进入临在之锚
+            </span>
+          </Link>
         </div>
       </section>
 
