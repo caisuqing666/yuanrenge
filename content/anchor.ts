@@ -95,7 +95,7 @@ export const valueStatement = {
 export const aftercareContent = {
   title: '',
   message: '这一轮已经完成了',
-  subtitle: '你不需要再继续停留，\n也不需要再处理任何东西。',
+  subtitle: '接下来，不需要你再做任何处理。',
   // 回归现实的物理动作建议
   groundingActions: [
     '喝一口水',

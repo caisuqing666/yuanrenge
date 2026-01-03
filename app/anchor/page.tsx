@@ -292,72 +292,78 @@ export default function AnchorPage() {
 
   // ⑥ 余波安放页（Aftercare）
   const AftercarePage = () => (
-    <div className="anchor-page aftercare-page">
-      <div className="anchor-content text-center max-w-lg mx-auto">
-        {/* 主标题 */}
-        <div className="aftercare-message mb-8">
-          <p className="text-xl md:text-2xl text-[var(--text-primary)] leading-relaxed mb-4">
-            {aftercareContent.message}
-          </p>
+    <div className="anchor-page aftercare-page min-h-screen flex flex-col">
+      <div className="anchor-content text-center max-w-lg mx-auto flex-1 flex flex-col">
+        {/* 上半屏：内容区 - 留更多空白，让用户"看完 → 停一下" */}
+        <div className="flex-1 flex flex-col justify-center pt-20 pb-8">
+          {/* 主标题 */}
+          <div className="aftercare-message mb-8">
+            <p className="text-xl md:text-2xl text-[var(--text-primary)] leading-relaxed mb-4">
+              {aftercareContent.message}
+            </p>
+          </div>
+
+          {/* 副标题 */}
+          {aftercareContent.subtitle && (
+            <div className="mb-12">
+              {aftercareContent.subtitle.split('\n').map((line, i) => (
+                <p key={i} className="text-base md:text-lg text-[var(--text-secondary)] leading-relaxed mb-2">
+                  {line}
+                </p>
+              ))}
+            </div>
+          )}
+
+          {/* 离开前的建议 */}
+          {aftercareContent.groundingActions && aftercareContent.groundingActions.length > 0 && (
+            <div>
+              <p className="text-sm text-[var(--text-muted)] mb-4">
+                离开前，做一件很小的事：
+              </p>
+              <ul className="space-y-3 text-left max-w-xs mx-auto">
+                {aftercareContent.groundingActions.map((action, i) => (
+                  <li key={i} className="text-sm text-[var(--text-secondary)] flex items-center">
+                    <span className="text-[var(--text-muted)] mr-3">•</span>
+                    <span>{action}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
-        {/* 副标题 */}
-        {aftercareContent.subtitle && (
-          <div className="mb-12">
-            {aftercareContent.subtitle.split('\n').map((line, i) => (
-              <p key={i} className="text-base md:text-lg text-[var(--text-secondary)] leading-relaxed mb-2">
-                {line}
+        {/* 下半屏：操作区 - 按钮靠下，引导"往下 → 离开"的动作 */}
+        <div className="mt-auto pb-12 pt-16">
+          {/* 主要操作：回到生活 - 视觉上更突出，引导离开动作 */}
+          {aftercareContent.mainAction && (
+            <div className="mb-8">
+              <Link
+                href="/"
+                className="anchor-btn-primary block w-full max-w-xs mx-auto"
+              >
+                {aftercareContent.mainAction.label}
+              </Link>
+            </div>
+          )}
+
+          {/* 次要操作：保存锚定 */}
+          {aftercareContent.secondaryHint && aftercareContent.secondaryAction && (
+            <div className="pt-6 border-t border-[var(--border-subtle)]">
+              <p className="text-xs text-[var(--text-muted)] mb-3 opacity-60">
+                {aftercareContent.secondaryHint}
               </p>
-            ))}
-          </div>
-        )}
-
-        {/* 离开前的建议 */}
-        {aftercareContent.groundingActions && aftercareContent.groundingActions.length > 0 && (
-          <div className="mb-16">
-            <p className="text-sm text-[var(--text-muted)] mb-4">
-              离开前，做一件很小的事：
-            </p>
-            <ul className="space-y-3 text-left max-w-xs mx-auto">
-              {aftercareContent.groundingActions.map((action, i) => (
-                <li key={i} className="text-sm text-[var(--text-secondary)] flex items-center">
-                  <span className="text-[var(--text-muted)] mr-3">•</span>
-                  <span>{action}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* 主要操作：回到生活 */}
-        {aftercareContent.mainAction && (
-          <div className="mb-8">
-            <Link
-              href="/"
-              className="anchor-btn-primary block w-full max-w-xs mx-auto"
-            >
-              {aftercareContent.mainAction.label}
-            </Link>
-          </div>
-        )}
-
-        {/* 次要操作：保存锚定 */}
-        {aftercareContent.secondaryHint && aftercareContent.secondaryAction && (
-          <div className="mt-12 pt-8 border-t border-[var(--border-subtle)]">
-            <p className="text-xs text-[var(--text-muted)] mb-3 opacity-60">
-              {aftercareContent.secondaryHint}
-            </p>
-            <button
-              onClick={() => {
-                // TODO: 实现保存功能
-                console.log('Action:', aftercareContent.secondaryAction?.id);
-              }}
-              className="text-xs text-[var(--text-muted)] opacity-60 hover:opacity-80 transition-opacity underline"
-            >
-              {aftercareContent.secondaryAction.label} →
-            </button>
-          </div>
-        )}
+              <button
+                onClick={() => {
+                  // TODO: 实现保存功能
+                  console.log('Action:', aftercareContent.secondaryAction?.id);
+                }}
+                className="text-xs text-[var(--text-muted)] opacity-60 hover:opacity-80 transition-opacity underline"
+              >
+                {aftercareContent.secondaryAction.label} →
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
