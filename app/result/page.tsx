@@ -55,9 +55,15 @@ function ResultContent() {
           
           {/* 页脚：内核标识 */}
           <footer className="pt-8 border-t border-[var(--border-subtle)] opacity-30">
-            <p className="text-xs text-[var(--text-muted)]">
+            <p className="text-xs text-[var(--text-muted)] mb-3">
               元人格 · 反应模式
             </p>
+            <Link 
+              href="/about" 
+              className="text-xs text-[var(--text-muted)] opacity-20 hover:opacity-40 transition-opacity"
+            >
+              为什么存在
+            </Link>
           </footer>
         </div>
       </div>

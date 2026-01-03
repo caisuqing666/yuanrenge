@@ -15,7 +15,7 @@ export default function Home() {
             在此刻，站稳一下。
           </p>
           <p className="text-xs text-[var(--text-muted)] mb-12 opacity-70">
-            看见你当下的反应模式
+            看见你此刻的反应模式
           </p>
           <Link href="#entry" className="btn-cyber inline-block relative z-10">
             看看我现在处在哪种状态
@@ -120,11 +120,17 @@ export default function Home() {
             不构成心理、医疗或其他专业建议。
           </p>
           
-          {/* 页脚：内核标识 */}
+          {/* 页脚：内核标识 + 关于入口 */}
           <footer className="pt-8 border-t border-[var(--border-subtle)]">
-            <p className="text-xs text-[var(--text-muted)] opacity-50">
+            <p className="text-xs text-[var(--text-muted)] opacity-50 mb-4">
               元人格 · 反应模式
             </p>
+            <Link 
+              href="/about" 
+              className="text-xs text-[var(--text-muted)] opacity-30 hover:opacity-50 transition-opacity"
+            >
+              为什么存在
+            </Link>
           </footer>
         </div>
       </section>

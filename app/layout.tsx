@@ -20,7 +20,7 @@ const notoSerif = Noto_Serif_SC({
 
 export const metadata: Metadata = {
   title: "临在之锚",
-  description: "在此刻，站稳一下。看见你当下的反应模式。",
+  description: "在此刻，站稳一下。看见你此刻的反应模式。",
 };
 
 export default function RootLayout({

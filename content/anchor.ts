@@ -87,20 +87,28 @@ export const valueStatement = {
   content: `这里不分析你是谁，
 也不告诉你该成为什么。
 
-如果你只是想
-在此刻，站稳一下，
-可以从这里开始。`,
+如果你只是想在此刻站稳一下，可以从这里开始。`,
   buttonText: '我为自己而来'
 };
 
 // 余波安放页文案
 export const aftercareContent = {
-  title: '临在之锚',
-  message: '你不需要现在就变好\n你已经站回来了',
+  title: '',
+  message: '这一轮已经完成了',
+  subtitle: '你不需要再继续停留，\n也不需要再处理任何东西。',
   // 回归现实的物理动作建议
-  groundingHint: '离开前，可以喝一口水，或看一眼窗外。',
-  actions: [
-    { id: 'save', label: '保存这次锚定' },
-    { id: 'card', label: '生成重塑卡片' }
-  ]
+  groundingActions: [
+    '喝一口水',
+    '站起来活动一下',
+    '看一眼窗外或远处'
+  ],
+  mainAction: {
+    id: 'back-to-life',
+    label: '回到生活'
+  },
+  secondaryHint: '想留下一点记录？',
+  secondaryAction: {
+    id: 'save',
+    label: '保存这次锚定'
+  }
 };
